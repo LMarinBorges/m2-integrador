@@ -1,0 +1,27 @@
+.searchContainer {
+  display: flex;
+  gap: 12px;
+}
+
+.searchBox {
+  border: 2px solid var(--black-color);
+  box-shadow: var(--drop-shadow);
+  border-radius: 0;
+  padding: 6px;
+}
+
+.searchButton {
+  background-color: transparent;
+  border: 2px solid var(--black-color);
+  box-shadow: var(--drop-shadow);
+  padding: 6px 12px;
+  cursor: pointer;
+}
+
+.searchButton:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.searchButton:active {
+  background-color: rgba(0, 0, 0, 0.1);
+}

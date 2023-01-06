@@ -1,0 +1,12 @@
+.navbar {
+  border: 2px solid var(--black-color);
+  box-shadow: var(--drop-shadow);
+  padding: 16px;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 24px;
+}
+
+.navbar > h1 {
+  margin: 0;
+}

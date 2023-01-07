@@ -1,9 +1,16 @@
-import { useState } from "react";
-import { Navigate, Route, Routes } from "react-router-dom";
+import { useEffect, useState } from "react";
+import {
+  Navigate,
+  Route,
+  Routes,
+  useLocation,
+  useNavigate,
+} from "react-router-dom";
 
 import About from "./components/About";
 import Cards from "./components/Cards.jsx";
 import Detail from "./components/Detail";
+import Form from "./components/Form";
 import Nav from "./components/Nav";
 import NotFound from "./components/NotFound";
 
@@ -41,10 +48,33 @@ function App() {
       });
   };
 
+  const user = {
+    username: "liam.marin03926@protonmail.com",
+    password: "MessiD1os",
+  };
+  const [access, setAccess] = useState(false);
+  const navigate = useNavigate();
+  const login = ({ username, password }) => {
+    if (username === user.username && password === user.password) {
+      setAccess(true);
+      navigate("/home");
+    }
+  };
+  const logout = () => setAccess(false);
+
   return (
     <Routes>
-      <Route element={<Nav onSearch={onSearch} onRandom={onRandom} />}>
-        <Route index element={<Navigate to="/home" />} />
+      <Route index element={<Form access={access} onLogin={login} />} />
+      <Route
+        element={
+          <Nav
+            access={access}
+            onSearch={onSearch}
+            onRandom={onRandom}
+            onLogout={logout}
+          />
+        }
+      >
         <Route
           path="home"
           element={<Cards characters={characters} onClose={onClose} />}

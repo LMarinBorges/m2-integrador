@@ -1,4 +1,5 @@
-.searchContainer {
+.searchContainer,
+.searchContainer > form {
   display: flex;
   gap: 12px;
 }

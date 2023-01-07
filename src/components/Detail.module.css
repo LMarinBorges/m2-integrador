@@ -1,0 +1,40 @@
+.detailContent {
+  border: 2px solid var(--black-color);
+  box-shadow: var(--drop-shadow);
+  padding: 24px;
+  display: flex;
+  align-items: center;
+  gap: 24px;
+  width: 50%;
+  margin: auto;
+  position: relative;
+}
+
+.detailReturn {
+  position: absolute;
+  right: 12px;
+  top: 12px;
+  text-decoration: none;
+  color: inherit;
+}
+
+.detailReturn:hover {
+  text-decoration: underline;
+}
+
+.detailReturn:active {
+  color: red;
+}
+
+.detailPortrait {
+  width: 128px;
+  height: 128px;
+  border: 2px solid var(--black-color);
+  box-shadow: var(--drop-shadow);
+}
+
+.detailText h2,
+.detailText p {
+  margin: 0;
+  margin-bottom: 8px;
+}

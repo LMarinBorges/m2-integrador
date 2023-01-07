@@ -1,7 +1,11 @@
 import { useState } from "react";
+import { Navigate, Route, Routes } from "react-router-dom";
 
+import About from "./components/About";
 import Cards from "./components/Cards.jsx";
+import Detail from "./components/Detail";
 import Nav from "./components/Nav";
+import NotFound from "./components/NotFound";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -23,29 +27,33 @@ function App() {
       oldChars.filter((character) => character.id !== id)
     );
   const onRandom = () => {
-    (async () => {
-      while (true) {
-        const response = await fetch(
-          `https://rickandmortyapi.com/api/character/${Math.floor(
-            Math.random() * 826
-          )}`
-        );
-        const data = await response.json();
-        if (characters.some((character) => character.id === data.id)) {
-          continue;
-        } else {
-          return data;
-          break;
-        }
+    let id;
+    while (true) {
+      id = Math.floor(Math.random() * 826);
+      if (!characters.some((character) => character.id === id)) {
+        break;
       }
-    })().then((data) => setCharacters((oldChars) => [...oldChars, data]));
+    }
+    fetch(`https://rickandmortyapi.com/api/character/${id}`)
+      .then((response) => response.json())
+      .then((data) => {
+        setCharacters((oldChars) => [...oldChars, data]);
+      });
   };
 
   return (
-    <>
-      <Nav onSearch={onSearch} onRandom={onRandom} />
-      <Cards characters={characters} onClose={onClose} />
-    </>
+    <Routes>
+      <Route element={<Nav onSearch={onSearch} onRandom={onRandom} />}>
+        <Route index element={<Navigate to="/home" />} />
+        <Route
+          path="home"
+          element={<Cards characters={characters} onClose={onClose} />}
+        />
+        <Route path="about" element={<About />} />
+        <Route path="detail/:detailId" element={<Detail />} />
+        <Route path="*" element={<NotFound />} />
+      </Route>
+    </Routes>
   );
 }
 

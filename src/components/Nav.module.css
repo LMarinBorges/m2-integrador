@@ -1,4 +1,4 @@
-.navbar {
+.header {
   border: 2px solid var(--black-color);
   box-shadow: var(--drop-shadow);
   padding: 16px;
@@ -7,6 +7,25 @@
   margin-bottom: 24px;
 }
 
-.navbar > h1 {
+.nav {
+  display: flex;
+  align-items: baseline;
+  gap: 32px;
+}
+
+.nav > h1 {
   margin: 0;
+}
+
+.nav > a {
+  color: inherit;
+  text-decoration: none;
+}
+
+.nav > a:hover {
+  text-decoration: underline;
+}
+
+.nav > a:active {
+  color: red;
 }

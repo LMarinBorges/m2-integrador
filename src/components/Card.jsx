@@ -1,15 +1,18 @@
+import { Link } from "react-router-dom";
 import styles from "./Card.module.css";
 
-export default function Card({ onClose, name, species, gender, image }) {
+export default function Card({ onClose, id, name, species, gender, image }) {
   return (
-    <div className={styles.cardRoot}>
+    <article className={styles.cardRoot}>
       <div className={styles.card}>
         <button className={styles.cardClose} onClick={onClose}>
           X
         </button>
         <img className={styles.cardPortrait} src={image} alt="" />
         <div className={styles.cardDetails}>
-          <h2>{name}</h2>
+          <h2>
+            <Link to={`/detail/${id}`}>{name}</Link>
+          </h2>
           <p>
             <b>Species: </b>
             {species}
@@ -20,6 +23,6 @@ export default function Card({ onClose, name, species, gender, image }) {
           </p>
         </div>
       </div>
-    </div>
+    </article>
   );
 }

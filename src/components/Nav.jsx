@@ -9,6 +9,7 @@ export default function Nav({ access, onSearch, onRandom, onLogout }) {
         <nav className={styles.nav}>
           <h1>Rick and Morty App</h1>
           <Link to="/home">Home</Link>
+          <Link to="/favorites">Favorites</Link>
           <Link to="/about">About</Link>
           <button onClick={onLogout}>Cerrar Sesión</button>
         </nav>

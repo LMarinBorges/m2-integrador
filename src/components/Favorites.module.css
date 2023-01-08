@@ -1,0 +1,21 @@
+.cardContainer {
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+  gap: 24px;
+  align-items: stretch;
+  align-content: stretch;
+}
+
+.emptyText {
+  margin: 64px auto;
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 16px;
+  text-align: center;
+}
+
+.emptyText > * {
+  margin: 0;
+}

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { useDispatch } from "react-redux";
 import {
   Navigate,
   Route,
@@ -10,9 +11,11 @@ import {
 import About from "./components/About";
 import Cards from "./components/Cards.jsx";
 import Detail from "./components/Detail";
+import Favorites from "./components/Favorites";
 import Form from "./components/Form";
 import Nav from "./components/Nav";
 import NotFound from "./components/NotFound";
+import * as actions from "./redux/actions";
 
 function App() {
   const [characters, setCharacters] = useState([]);
@@ -29,10 +32,13 @@ function App() {
         }
       });
   };
-  const onClose = (id) =>
+  const dispatch = useDispatch();
+  const onClose = (id) => {
     setCharacters((oldChars) =>
       oldChars.filter((character) => character.id !== id)
     );
+    dispatch(actions.removeFavorite(id));
+  };
   const onRandom = () => {
     let id;
     while (true) {
@@ -78,6 +84,10 @@ function App() {
         <Route
           path="home"
           element={<Cards characters={characters} onClose={onClose} />}
+        />
+        <Route
+          path="favorites"
+          element={<Favorites characters={characters} onClose={onClose} />}
         />
         <Route path="about" element={<About />} />
         <Route path="detail/:detailId" element={<Detail />} />
